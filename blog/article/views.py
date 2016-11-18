@@ -7,5 +7,11 @@ def article(request):
     Render the article page
     '''
     articles = Article.objects.all()
-    context = {'articles':articles}
+    itemArray = []
+    
+    for article in articles:
+        items = [article]
+        items.extend(list(Comment.objects.filter(article=article)))
+        itemArray.append(items)
+        context = {'itemArray':itemArray}
     return render(request, 'article/article.html', context)
