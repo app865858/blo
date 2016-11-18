@@ -1,14 +1,25 @@
 <!doctype html>
 {% load staticfiles %}
 <html>
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
 <head>
 <title>部落格</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
-<h1>部落格說--Hello world!</h1>
+{% include 'main/menu.html' %}
+<div class=articleContent>{{ article.content|linebreaks }}</div>
+<h2>歡迎來到我的部落格</h2>
 <br>
-<p><a href="{% url 'main:main' %}">回首頁</a></p>
+{% for article in articles %}
+<h3>{{ article.title }}</h3>
+<p>發表時間:{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
+<div class=articleContent>{{ article.content }}</div>
+<p>瀏覽次數:{{ article.views }},按讚:{{ article.likes }}</p>
+<hr>
+{% endfor %}
+<br>
 </body>
 </html>

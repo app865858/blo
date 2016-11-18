@@ -18,5 +18,6 @@ def populate():
          for comment in comments:
              Comment.objects.create(article=article, content=comment)
      print('done')
+     
 if __name__ == '__main__':
     populate()

@@ -14,6 +14,7 @@ class Article(models.Model):
         ordering = ('-pubDateTime', )
 
 
+
 class Comment(models.Model):
     article = models.ForeignKey(Article)
     content = models.CharField(max_length=128)
